@@ -1,0 +1,125 @@
+pam-phidgetrfid is intended to provide PAM authentication via the RFID Phidget. See http://www.phidgets.com/ for more details on the RFID Phidget and Phidgets in general. Visit http://sourceforge.net/projects/pam-phidgetrfid/ for more information on pam-phidgetrfid itself.
+
+THIS MODULE DOES NOT PROVIDE ANY AUTHENTICATION MECHANISM OF ITS OWN. It merely acquires a tag and passes it down the PAM stack. Any module can be configured to accept the RFID tag as an authentication token using the "try_first_pass" or "use_first_pass" arguments. This allows the pam-phidgetrfid to easily integrate with existing authentication schemes, and avoid re-inventing the wheel.
+
+INSTALLATION
+
+The module requires the Phidgets C API (available from http://www.phidgets.com/drivers.php), and the PAM headers to build.
+
+The module can be built and installed using the common Autotools pattern:
+	
+	$ ./configure
+	$ make
+	$ make install
+	
+Administrative privileges are required to execute the last command--either login as root or execute with the sudo command like this:
+
+	$ sudo make install
+
+PAM typically sources its modules from the /lib/security directory: running the configure script with a "--prefix=/" argument will install the pam-phidgetrfid module in this directory, but will also install the scan-tag utility in /bin. This does not conform to the Linux File Hierarchy Standard, and is therefore not ideal.
+
+Alternatively, the module can be configured with a customized system binary prefix:
+
+	$ ./configure --prefix=/ --sbindir=/usr/sbin
+	$ make
+	$ make install
+
+Administrative privileges are required to execute the last command.  
+
+CONFIGURATION
+
+NOTE: users wishing to authenticate via pam-phidgetrfid MUST have read and write access the Phidget RFID scanner. This is typically accomplished by giving all users read/write access to the device in the udev rules. See the Phidget API installation instructions for details.
+
+The pam-phidgetrfid module can be added the PAM stack like any other module:
+
+	auth	default=ignore	pam_phidgetrfid.so [timeout=nn] [debug] [silent] 
+
+DO NOT use the "required" type in conjunction with the pam-phidgetrfid module, as the module will always return PAM_IGNORE. 
+
+The authentication token that is acquired by the pam-phidgetrfid module is passed down the PAM stack. Modules that are configured with "use_first_pass" or "try_first_pass" arguments will use this authentication token for authentication. 
+
+The tag value that will be passed down the PAM stack can be displayed using the scan-tag utility. The scan-tag accepts the same arguments as the pam module. For example:
+
+	$ scan-tag --timeout=3 --silent
+
+The simplest method for enabling RFID-based authentication is to set the user's password to the tag value obtained by scan-tag, and tell the UNIX password module to use this token using the "try_first_pass" argument. The following PAM configuration is necessary for this mode of operation:
+
+	auth	default=ignore					pam_phidgetrfid.so timeout=3
+	auth    [success=1 default=ignore]      pam_unix.so nullok_secure try_first_pass
+	auth    requisite                       pam_deny.so
+	auth    required                        pam_permit.so
+
+MODULE ARGUMENTS
+
+Passing the "debug" argument to the module will enable logging of additional information about the module's operation, useful for debugging. The "timeout" argument specifies a timeout in seconds before the module automatically returns with the status PAM_AUTHINFO_UNAVAIL. The "silent" argument disables the passing of informational messages to the application. This can be useful when the calling application does not display informational messages well.
+
+TESTING
+
+pamtester (http://pamtester.sourceforge.net/) is recommended for testing your configuration. Call pamtester with a service name listed in /etc/pam.d/. For instance, if you've configured gnome-screensaver to authenticate with pam-phidgetrfid, use the following line:
+
+	$ pamtester gnome-screensaver <user> authenticate
+	
+TROUBLESHOOTING
+	
+pam-phidgetrfid logs its messages using the PAM syslog facilities. These messages are typically logged in /var/log/auth.log. Additional information is logged if the "debug" argument given to the module.
+
+The scan-tag utility sends its information and debug messages to STDOUT.
+
+ADVANCED CONFIGURATION
+
+Advanced configurations are possible, limited only by the constraints of the PAM framework and the user's imagination. Bear in mind that modules will ignore the authentication token unless they are configured with a "use_first_pass" or "try_first_pass" argument.
+
+Here's an example using pam_krb5, falling back to pam_unix if authentication fails.
+
+	(/etc/pam.d/common-auth)
+	auth	default=ignore					pam_phidgetrfid.so timeout=3
+	auth    [success=2 default=ignore]      pam_krb5.so minimum_uid=1000 try_first_pass
+	auth    [success=1 default=ignore]      pam_unix.so nullok_secure try_first_pass
+	auth    requisite                       pam_deny.so
+	auth    required                        pam_permit.so
+
+This configuration requires the user's Kerberos password to be set to the tag value using kpasswd.  
+
+Another example using pam_userdb:
+
+	auth	[authinfo_unavail=1 default=ignore]	pam_phidgetrfid.so
+	auth    requisite	pam_userdb.so db=/path/to/db use_first_pass
+
+It is sometimes useful to skip over other authentication modules like so:
+
+	auth	[authinfo_unavail=1 default=ignore]	pam_phidgetrfid.so
+	auth    [success=3 default=ignore]	pam_userdb.so db=/path/to/db use_first_pass
+	auth	[success=2 default=ignore]	pam_krb5.so minimum_uid=1000
+	auth	[success=1 default=ignore]	pam_unix.so nullok_secure try_first_pass
+
+Further information is available from the PAM documentation.
+
+To create a Berkeley DB for use with pam-phidgetrfid, do the following:
+
+Make sure the Berkeley DB utilities are installed on your system. Then create a text file in the format:
+
+	<username>
+	<tag>
+	<username>
+	<tag>
+
+etc. The newlines are important. 
+
+Use this command to create the database from the text file:
+		
+	db_load -T -t hash < tag_db_input tag.db
+	
+Ubuntu Karmic uses dbx.x_load instead of db_load, where x.x is the version of libdb that is installed.
+
+NOTE: a ".db" suffix is automatically appended to the db module argument by pam_userdb. That means that if your database is located in /etc/tag.db, your argument to the PAM module would be "db=/etc/tag"
+
+More information about pam_userdb is available here: http://www.kernel.org/pub/linux/libs/pam/Linux-PAM-html/sag-pam_userdb.html
+
+THANKS
+
+The following projects provided examples and inspiration for various aspects of pam-phidgetrfid:
+
+pam_krb5
+pam_authrfid
+pam_fprint
+pam_userdb

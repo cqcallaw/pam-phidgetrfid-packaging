@@ -1,0 +1,446 @@
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat Jun 12 15:13:40 2010 -0700
+
+    * Updated configure.ac with new version numbers
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat Jun 12 15:09:34 2010 -0700
+
+    * Updated NEWS for 1.0 release
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat Jun 12 14:41:09 2010 -0700
+
+    * Updated version numbers to 1.0
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat Jun 12 14:34:23 2010 -0700
+
+    Fixed bug in build system pointing to wrong libscanner-interface file
+    
+    * Updated pam-module/Makefile.am
+    * Updated scan-tag/Makefile.am
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat Jun 12 14:07:04 2010 -0700
+
+    * Major revisions to README, covering scan-tag usage and various configurations
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat Jun 12 12:58:45 2010 -0700
+
+    Renamed tag-scanner utility to "scan-tag"
+    
+    * Changed directory names to reflect new name
+    * Updated build system with new file locations
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat Jun 12 12:45:58 2010 -0700
+
+    *Refactored silent operation check in log_message to be more compact and readable
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat Jun 12 12:31:07 2010 -0700
+
+    * Cast pointers to void * for free in log_message
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat Jun 12 12:26:11 2010 -0700
+
+    Added build files missing from version control
+    
+    * Added common/Makefile.am to version control
+    * Added tag-scanner/Makefile.am to version control
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat Jun 12 12:23:36 2010 -0700
+
+    Removed logging of tag value to debug output, for great security
+    
+    * Updated tag_handler event handler, removing tag value from log message
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Fri Jun 11 23:36:58 2010 -0700
+
+    Added checks to pam module's log function to suppress splint warnings
+    
+    * Added checks to the log_function to see if the pam_message might have been modified, and free() the message if this is the case.
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Fri Jun 11 23:20:55 2010 -0700
+
+    Added code to return faster if a scanner isn't attached.
+    
+    * Modified init_scanner to return errorcode if a scanner is not attached.
+    * Modified calling functions to return after a 1 second timeout if a scanner is not attached.
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Fri Jun 11 22:14:58 2010 -0700
+
+    Fixed log level check regression
+    
+    * Added log level check back into log_message in pam-phidgetrfid.c
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Thu Jun 10 23:00:17 2010 -0700
+
+    Tag-scanner command-line utility re-implemented using common library.
+    
+    * Implemented tag-scanner utility using scanner-interface library
+    
+    * Various tweaks based on splint messages
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Tue Jun 8 23:06:46 2010 -0700
+
+    Replaced "reader" terminology with "scanner", various critical bugfixes to scanner-interface library
+    
+    * Replaced "reader" with "scanner" in all function and file names
+    * Proper handling of log_levels in log_function
+    * Various tweaks and boundary condition checks throughout
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Mon Jun 7 22:30:20 2010 -0700
+
+    Moved and renamed phidget-interface.c to common directory
+    
+    * Moved phidget-interface to common directory
+    * Renamed phidget-interface.c to scanner-interface.c
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Mon Jun 7 22:14:55 2010 -0700
+
+    Refactored Phidget interface, replacing syslog calls with calls to consumer-defined function pointers
+    
+    * Removed pam_syslog calls and replaced them with calls to functions pointers in phidget-interface.c
+    * Added arguments to init_reader function in phidget-interface.c for log and message function pointers
+    * Added timeout and sleep increment arguments to read_tag function in phidget-interface.c
+    * Removed helpers.c and folded the helper functions into the phidget-interface.c and pam-phidgetrfid.c files
+    * Moved several global variables defined in pam-phidgetrfid.h to the file level
+    
+    * Added code to avoid a potential memory leak in send_info_msg (renamed to message_function)
+    * Added code to dynamically allocate memory for info messages sent from read_tag in phidget-interface.c
+    
+    * Moved some of the mutex unlocks in read_tag to the code more readable.
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sun Jun 6 10:00:42 2010 -0700
+
+    Static variable allocation and readability tweaks to the pam-module code
+    
+    * Statically allocated space for variables in pam-phidgetrfid.c
+    
+    * Added TRUE and FALSE definitions to pam-phidgetrfid.h
+    * Made _sleep_increment unsigned
+    * Made the msg argument of send_info_message const
+    
+    * Refactered variable names in helpers.c
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sun Jun 6 09:58:53 2010 -0700
+
+    Usability updates to tag-scanner program
+    
+    * Added several error checks to main.c
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sun Jun 6 09:56:45 2010 -0700
+
+    Updated build system to accomodate new directory structure
+    
+    * added tag-scanner directory to Makefile.am
+    * added tag-scanner entries to configure.ac
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat Jun 5 23:23:14 2010 -0700
+
+    * Moved pam module code to pam-module directory
+    
+    * Started work on tag-scanner
+
+
+Merge: 8c03b5f 0955822
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Mon May 24 20:21:26 2010 -0700
+
+    Merge branch 'master' of ssh://pam-phidgetrfid.git.sourceforge.net/gitroot/pam-phidgetrfid/pam-phidgetrfid
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Mon May 24 20:11:00 2010 -0700
+
+    * 0.4 release
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Mon May 24 20:11:00 2010 -0700
+
+    * Prep for 0.4 release
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sun May 23 23:04:18 2010 -0700
+
+    More adjustments based on splint messages:
+    
+    * Made error checking more robust in all Phidget interface functions
+    * Changed the behavior of send_info_msg helper function
+    * Declared functions as static where possible
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sun May 23 23:00:13 2010 -0700
+
+    * Build system error checks and bugfixes
+    * Moved user-facing changelog to NEWS
+    * Updated README
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sun May 23 16:47:17 2010 -0700
+
+    * Updated build scripts and ChangeLog for 0.4 release
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sun May 23 16:19:55 2010 -0700
+
+    * Documentation updates: clarified installation instructions in README and added INSTALL file
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Fri May 21 22:06:23 2010 -0700
+
+    Fixed libphidget21 dependency in build system
+    Fixed regression for handling timeout module arguments
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat May 15 19:04:42 2010 -0700
+
+    Various changes inspired by splint
+    
+    * Removed the check that caused the module to automatically return if an existing authtoken was detected
+    * Changed "notify" module option to "silent", updated documentation to reflect this
+    * Implemented partial support for the flags argument of pam_sm_authenticate (PAM_SILENT)
+    * Added some checks and log messages for get/set_pam_item calls
+    * Renamed some variables for clarity
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat May 15 18:47:18 2010 -0700
+
+    Intial Autotool instrumentation
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Fri Apr 2 14:42:08 2010 -0700
+
+    Moved source files to src/ directory.
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Fri Apr 2 14:35:57 2010 -0700
+
+    Various comments and style tweaks. Updated README, removing incorrect notes about pam_userdb
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sun Mar 28 23:04:11 2010 -0700
+
+    More function comments
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sun Mar 28 22:26:17 2010 -0700
+
+    Updated function comments, refactored some code for clarity.
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sun Mar 28 18:07:24 2010 -0700
+
+    Source file restructuring.
+    
+    Restructured the source files so that all Phidget-related functions are in a single file and removed some prototypes from pam-phidgetrfid.h to make the Phidget interface more of a black box.
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat Mar 27 09:50:34 2010 -0700
+
+    Updated README with notify documentation
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat Mar 27 09:49:09 2010 -0700
+
+    Added user message option
+    
+    The 'notify' argument will enable some informational messages for the user.
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Tue Mar 23 22:45:36 2010 -0700
+
+    Removed extraneous tag presence flag
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Mon Mar 22 22:48:34 2010 -0700
+
+    Fixed improper freeing of resources after timeout
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Mon Mar 22 22:11:39 2010 -0700
+
+    Removed info messages to application
+    
+    The module no longer sends informational messages to the reader, since they are not always handled properly.
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Mon Mar 22 21:50:23 2010 -0700
+
+    Removed tag removal prompt and updated install docs
+    
+    The module no longer requires the user to remove the tag from the scanner before it will continue.
+    Updated INSTALL doc with notes on configuring Linux for the Phidget API.
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Mon Mar 22 17:26:09 2010 -0700
+
+    Added missing helpers.c file
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Mon Mar 22 07:45:55 2010 -0700
+
+    Scan complete notification
+    
+    The user is now notified once a scan has been completed.
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sun Mar 21 22:14:40 2010 -0700
+
+    Properly closing Phidget interface handles
+    
+    Implemented a proper freeing of Phidget handles.
+    Updated README with more usable PAM configurations.
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sun Mar 21 18:00:08 2010 -0700
+
+    pam_sm_authenticate correctly returns PAM_IGNORE now.
+    Updated README with correct configuration instructions.
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat Mar 20 20:39:05 2010 -0700
+
+    Removed unnecessary malloc'ing of current_tag
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat Mar 20 14:03:55 2010 -0700
+
+    Added configuration into to README, and fixed typos.
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat Mar 20 13:56:25 2010 -0700
+
+    Implemented debug and timeout arguments
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat Mar 20 11:47:12 2010 -0700
+
+    New global variable naming convention.
+    Rewrote macros as constants.
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Sat Mar 20 11:16:30 2010 -0700
+
+    Added timeout messages for tag reading
+    Removed unnecessary malloc'ing from read_tag
+
+
+Author: Caleb Callaway <malibee@users.sourceforge.net>
+Date:   Fri Mar 19 18:32:22 2010 -0700
+
+    Updated contact info.
+
+
+Author: Caleb Callaway <malibee@users.sourceforge.net>
+Date:   Fri Mar 19 17:55:18 2010 -0700
+
+    Added several documentation files, updated README
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Thu Mar 18 23:16:02 2010 -0700
+
+    Various minor edits
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Thu Mar 18 23:10:58 2010 -0700
+
+    Changed naming scheme to use dashes instead of underscores
+    Added README and license headers (LGPLv3)
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Tue Mar 16 19:51:44 2010 -0700
+
+    Functional (albeit barely) build
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Tue Mar 16 18:57:21 2010 -0700
+
+    Time to try it out.
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Tue Mar 16 18:35:46 2010 -0700
+
+    It builds, but doesn't do anything yet.
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Tue Mar 16 18:20:07 2010 -0700
+
+    Integrating parts from various projects.
+
+
+Author: Caleb Callaway <enlightened.despot@gmail.com>
+Date:   Tue Mar 16 17:48:05 2010 -0700
+
+    Initial commit

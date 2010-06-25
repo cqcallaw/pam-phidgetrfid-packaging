@@ -1,0 +1,6 @@
+Name: Phidget RFID authentication
+Default: no
+Priority: 832
+Auth-Type: Primary
+Auth:
+	[default=ignore]	pam_phidgetrfid.so timeout=3

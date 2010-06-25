@@ -1,0 +1,2 @@
+usr/lib/security/*.so lib/security
+debian/pam-config/* /usr/share/pam-configs

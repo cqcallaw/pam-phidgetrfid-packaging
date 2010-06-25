@@ -1,0 +1,23 @@
+pam-phidgetrfid 1.0.3:
+	
+	* Set scan-tag to build as a system binary instead of a user binary.
+	* Updated README with proper build and installation instructions.
+	
+pam-phidgetrfid 1.0.2:
+
+	* Updated NEWS file with 1.0 release major changes.
+	* Updated configure.ac with new version numbers.	
+
+pam-phidgetrfid 1.0:
+
+	* Tag scanning command line utility scan-tag added (Closes Feature Request 2974622).
+	* Added checks to return immediately if a scanner is not detected as being attached.
+	* Refactered Phidget interface into separate helper library
+	* Various bugfixes and tweaks
+	
+pam-phidgetrfid 0.4:
+
+	* Autotools support: the module can now be built with the familiar ./configure, make, and make install commands
+	* Removed "notify" module argument
+	* Added "silent" module argument
+	* Removed a check that would return without scanning for a tag when an existing authentication token was present
