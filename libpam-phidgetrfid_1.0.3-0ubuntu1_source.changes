@@ -1,0 +1,41 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Format: 1.8
+Date: Fri, 18 Jun 2010 13:15:52 -0700
+Source: libpam-phidgetrfid
+Binary: libpam-phidgetrfid phidgetrfid-utils
+Architecture: source
+Version: 1.0.3-0ubuntu1
+Distribution: lucid
+Urgency: low
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Changed-By: Caleb Callaway <enlightened.despot@gmail.com>
+Description: 
+ libpam-phidgetrfid - PAM module providing authentication via Phidget RFID tag scanner
+ phidgetrfid-utils - Utilities for Phidget RFID scanner
+Changes: 
+ libpam-phidgetrfid (1.0.3-0ubuntu1) lucid; urgency=low
+ .
+   * Initial release
+Checksums-Sha1: 
+ 50293a3d818a26f2eca4c3a06b01d672674e25f5 1298 libpam-phidgetrfid_1.0.3-0ubuntu1.dsc
+ c854633d236f029d827809aecb226071587e4767 313332 libpam-phidgetrfid_1.0.3.orig.tar.gz
+ 3ed640b6cf31114a7351e77a24226e9a451903f1 26982 libpam-phidgetrfid_1.0.3-0ubuntu1.debian.tar.gz
+Checksums-Sha256: 
+ 1259f38951c2a7a4080e37c96ae2016e75b4a6eb227bf8837a68143336dfe353 1298 libpam-phidgetrfid_1.0.3-0ubuntu1.dsc
+ 0ac3faa692321326b6ca1455217d5f8aa275fabdd628dc4f057ff6d54f9cd7af 313332 libpam-phidgetrfid_1.0.3.orig.tar.gz
+ aaaf695e1597d0d3d575a812cedacb97aa2e7486af0f7f7c06e56fdd029a770f 26982 libpam-phidgetrfid_1.0.3-0ubuntu1.debian.tar.gz
+Files: 
+ a59d905233a1340e8643643d29d430e9 1298 libs optional libpam-phidgetrfid_1.0.3-0ubuntu1.dsc
+ 135d939031f4cfd5a36576e1725a5662 313332 libs optional libpam-phidgetrfid_1.0.3.orig.tar.gz
+ 32a61d8821ed5843c0706b1fae9b4825 26982 libs optional libpam-phidgetrfid_1.0.3-0ubuntu1.debian.tar.gz
+Original-Maintainer: Caleb Callaway <enlightened.despot@gmail.com>
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.10 (GNU/Linux)
+
+iEYEARECAAYFAkweoAMACgkQs/7eAUjF6M45dgCfY5IW02uYkkvrdGuw3T81oPgc
+1zAAn15UeWpLkiIA+9RZLtCtEKOJDtU1
+=lQkL
+-----END PGP SIGNATURE-----
