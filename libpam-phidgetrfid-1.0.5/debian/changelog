@@ -1,0 +1,57 @@
+libpam-phidgetrfid (1.0.5-0ubuntu1) lucid; urgency=low
+
+  * New upstream release
+
+ -- Caleb Callaway <enlightened.despot@gmail.com>  Mon, 05 Jul 2010 22:21:37 -0700
+
+libpam-phidgetrfid (1.0.4-0ubuntu1) lucid; urgency=low
+
+  * New upstream release
+  * Added debian/watch file
+  * Added missing postinst script
+
+ -- Caleb Callaway <enlightened.despot@gmail.com>  Thu, 24 Jun 2010 22:50:33 -0700
+
+libpam-phidgetrfid (1.0.3-0ubuntu7) lucid; urgency=low
+
+  * Added pam-auth-update calls to postinst/prerm scripts
+  * Added libpam-runtime dependency to ensure pam-auth-update availability
+
+ -- Caleb Callaway <enlightened.despot@gmail.com>  Mon, 21 Jun 2010 08:23:36 -0700
+
+libpam-phidgetrfid (1.0.3-0ubuntu6) lucid; urgency=low
+
+  * Renamed config file for pam-auth-update
+
+ -- Caleb Callaway <enlightened.despot@gmail.com>  Sun, 20 Jun 2010 22:58:26 -0700
+
+libpam-phidgetrfid (1.0.3-0ubuntu5) lucid; urgency=low
+
+  * Added config file for pam-auth-update
+  * Updated libpam-phidgetrfid package description
+
+ -- Caleb Callaway <enlightened.despot@gmail.com>  Sun, 20 Jun 2010 22:53:41 -0700
+
+libpam-phidgetrfid (1.0.3-0ubuntu4) lucid; urgency=low
+
+  * fixed libusb dependencies
+
+ -- Caleb Callaway <enlightened.despot@gmail.com>  Sun, 20 Jun 2010 17:09:34 -0700
+
+libpam-phidgetrfid (1.0.3-0ubuntu3) lucid; urgency=low
+
+  * Added missing libusb-dev dependency
+
+ -- Caleb Callaway <enlightened.despot@gmail.com>  Sun, 20 Jun 2010 16:40:50 -0700
+
+libpam-phidgetrfid (1.0.3-0ubuntu2) lucid; urgency=low
+
+  * Added missing PAM-headers dependency to build system
+
+ -- Caleb Callaway <enlightened.despot@gmail.com>  Sun, 20 Jun 2010 16:23:59 -0700
+
+libpam-phidgetrfid (1.0.3-0ubuntu1) lucid; urgency=low
+
+  * Initial release 
+
+ -- Caleb Callaway <enlightened.despot@gmail.com>  Fri, 18 Jun 2010 13:15:52 -0700

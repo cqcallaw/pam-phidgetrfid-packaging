@@ -1,0 +1,37 @@
+ dpkg-buildpackage -rfakeroot -d -us -uc -S
+dpkg-buildpackage: set CFLAGS to default value: -g -O2
+dpkg-buildpackage: set CPPFLAGS to default value: 
+dpkg-buildpackage: set LDFLAGS to default value: -Wl,-Bsymbolic-functions
+dpkg-buildpackage: set FFLAGS to default value: -g -O2
+dpkg-buildpackage: set CXXFLAGS to default value: -g -O2
+dpkg-buildpackage: source package libpam-phidgetrfid
+dpkg-buildpackage: source version 1.0.5-0ubuntu1
+dpkg-buildpackage: source changed by Caleb Callaway <enlightened.despot@gmail.com>
+ fakeroot debian/rules clean
+dh clean
+   dh_testdir
+   dh_auto_clean
+   dh_clean
+ dpkg-source -b libpam-phidgetrfid-1.0.5
+dpkg-source: info: using source format `3.0 (quilt)'
+dpkg-source: warning: patches have not been applied, applying them now (use --no-preparation to override)
+dpkg-source: info: applying debian-changes-1.0.3-0ubuntu1
+dpkg-source: info: applying debian-changes-1.0.3-0ubuntu7
+dpkg-source: info: building libpam-phidgetrfid using existing ./libpam-phidgetrfid_1.0.5.orig.tar.gz
+dpkg-source: info: building libpam-phidgetrfid in libpam-phidgetrfid_1.0.5-0ubuntu1.debian.tar.gz
+dpkg-source: info: building libpam-phidgetrfid in libpam-phidgetrfid_1.0.5-0ubuntu1.dsc
+ dpkg-genchanges -S >../libpam-phidgetrfid_1.0.5-0ubuntu1_source.changes
+dpkg-genchanges: including full source code in upload
+dpkg-buildpackage: full upload (original source is included)
+Now running lintian...
+W: libpam-phidgetrfid source: configure-generated-file-in-source tmp/config.log
+Finished running lintian.
+Now signing changes and any dsc files...
+ signfile libpam-phidgetrfid_1.0.5-0ubuntu1.dsc Caleb Callaway <enlightened.despot@gmail.com>
+gpg: gpg-agent is not available in this session
+
+ signfile libpam-phidgetrfid_1.0.5-0ubuntu1_source.changes Caleb Callaway <enlightened.despot@gmail.com>
+gpg: gpg-agent is not available in this session
+gpg: Invalid passphrase; please try again ...
+
+Successfully signed dsc and changes files

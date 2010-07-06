@@ -1,0 +1,26 @@
+Source: libpam-phidgetrfid
+Priority: optional
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Caleb Callaway <enlightened.despot@gmail.com>
+Build-Depends: debhelper (>= 7), autotools-dev, libphidget-dev (>= 2.1.7), libpam0g-dev, libusb-dev
+Standards-Version: 3.8.4
+Section: libs
+Homepage: http://sourceforge.net/projects/pam-phidgetrfid/
+
+Package: libpam-phidgetrfid
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libpam-runtime (>= 1.0.1-6), libphidget (>= 2.1.7), libpam0g, libusb-0.1-4
+Recommends: phidgetrfid-utils
+Description: PAM authentication via Phidget RFID tag scanner
+ pam-phidgetrfid provides a PAM module that interfaces with a
+ Phidget RFID tag scanner, passing IDs scanned by the scanner
+ down the PAM stack as authentication tokens. 
+
+Package: phidgetrfid-utils
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libpam-phidgetrfid(>=1.0.3), libpam0g, libusb-0.1-4
+Description: Utilities for Phidget RFID scanner
+ Support utilities for working with the Phidget RFID scanner
+ .
