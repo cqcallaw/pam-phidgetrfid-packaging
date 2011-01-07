@@ -1,0 +1,96 @@
+ dpkg-buildpackage -rfakeroot -d -us -uc -S -sa
+dpkg-buildpackage: export CFLAGS from dpkg-buildflags (origin: vendor): -g -O2
+dpkg-buildpackage: export CPPFLAGS from dpkg-buildflags (origin: vendor): 
+dpkg-buildpackage: export CXXFLAGS from dpkg-buildflags (origin: vendor): -g -O2
+dpkg-buildpackage: export FFLAGS from dpkg-buildflags (origin: vendor): -g -O2
+dpkg-buildpackage: export LDFLAGS from dpkg-buildflags (origin: vendor): -Wl,-Bsymbolic-functions
+dpkg-buildpackage: source package libpam-phidgetrfid
+dpkg-buildpackage: source version 1.0.6-0ubuntu1
+dpkg-buildpackage: source changed by Caleb Callaway <enlightened.despot@gmail.com>
+ dpkg-source --before-build libpam-phidgetrfid-1.0.6
+ fakeroot debian/rules clean
+dh clean
+   dh_testdir
+   dh_auto_clean
+make[1]: Entering directory `/home/caleb/tmp/pam-phidgetrfid/libpam-phidgetrfid-1.0.6'
+Making distclean in scan-tag
+make[2]: Entering directory `/home/caleb/tmp/pam-phidgetrfid/libpam-phidgetrfid-1.0.6/scan-tag'
+make[3]: Entering directory `/home/caleb/tmp/pam-phidgetrfid/libpam-phidgetrfid-1.0.6'
+make[3]: Leaving directory `/home/caleb/tmp/pam-phidgetrfid/libpam-phidgetrfid-1.0.6'
+rm -rf .libs _libs
+ rm -f scan-tag
+rm -f *.o
+rm -f *.lo
+rm -f *.tab.c
+test -z "" || rm -f 
+test . = "." || test -z "" || rm -f 
+rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
+rm -rf ./.deps
+rm -f Makefile
+make[2]: Leaving directory `/home/caleb/tmp/pam-phidgetrfid/libpam-phidgetrfid-1.0.6/scan-tag'
+Making distclean in pam-module
+make[2]: Entering directory `/home/caleb/tmp/pam-phidgetrfid/libpam-phidgetrfid-1.0.6/pam-module'
+make[3]: Entering directory `/home/caleb/tmp/pam-phidgetrfid/libpam-phidgetrfid-1.0.6'
+make[3]: Leaving directory `/home/caleb/tmp/pam-phidgetrfid/libpam-phidgetrfid-1.0.6'
+rm -rf .libs _libs
+test -z "pam_phidgetrfid.la" || rm -f pam_phidgetrfid.la
+rm -f "./so_locations"
+rm -f *.o
+rm -f *.lo
+rm -f *.tab.c
+test -z "" || rm -f 
+test . = "." || test -z "" || rm -f 
+rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
+rm -rf ./.deps
+rm -f Makefile
+make[2]: Leaving directory `/home/caleb/tmp/pam-phidgetrfid/libpam-phidgetrfid-1.0.6/pam-module'
+Making distclean in common
+make[2]: Entering directory `/home/caleb/tmp/pam-phidgetrfid/libpam-phidgetrfid-1.0.6/common'
+make[3]: Entering directory `/home/caleb/tmp/pam-phidgetrfid/libpam-phidgetrfid-1.0.6'
+make[3]: Leaving directory `/home/caleb/tmp/pam-phidgetrfid/libpam-phidgetrfid-1.0.6'
+rm -rf .libs _libs
+test -z "libscanner-interface.la" || rm -f libscanner-interface.la
+rm -f "./so_locations"
+rm -f *.o
+rm -f *.lo
+rm -f *.tab.c
+test -z "" || rm -f 
+test . = "." || test -z "" || rm -f 
+rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
+rm -rf ./.deps
+rm -f Makefile
+make[2]: Leaving directory `/home/caleb/tmp/pam-phidgetrfid/libpam-phidgetrfid-1.0.6/common'
+Making distclean in .
+make[2]: Entering directory `/home/caleb/tmp/pam-phidgetrfid/libpam-phidgetrfid-1.0.6'
+rm -rf .libs _libs
+rm -f *.lo
+test -z "" || rm -f 
+test . = "." || test -z "" || rm -f 
+rm -f libtool config.lt
+rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
+make[2]: Leaving directory `/home/caleb/tmp/pam-phidgetrfid/libpam-phidgetrfid-1.0.6'
+rm -f config.status config.cache config.log configure.lineno config.status.lineno
+rm -f Makefile
+make[1]: Leaving directory `/home/caleb/tmp/pam-phidgetrfid/libpam-phidgetrfid-1.0.6'
+   dh_clean
+ dpkg-source -b libpam-phidgetrfid-1.0.6
+dpkg-source: info: using source format `3.0 (quilt)'
+dpkg-source: info: building libpam-phidgetrfid using existing ./libpam-phidgetrfid_1.0.6.orig.tar.gz
+dpkg-source: info: local changes stored in libpam-phidgetrfid-1.0.6/debian/patches/debian-changes-1.0.6-0ubuntu1, the modified files are:
+ libpam-phidgetrfid-1.0.6/config.guess.cdbs-orig
+ libpam-phidgetrfid-1.0.6/config.sub.cdbs-orig
+dpkg-source: info: building libpam-phidgetrfid in libpam-phidgetrfid_1.0.6-0ubuntu1.debian.tar.gz
+dpkg-source: info: building libpam-phidgetrfid in libpam-phidgetrfid_1.0.6-0ubuntu1.dsc
+ dpkg-genchanges -S -sa >../libpam-phidgetrfid_1.0.6-0ubuntu1_source.changes
+dpkg-genchanges: including full source code in upload
+ dpkg-source --after-build libpam-phidgetrfid-1.0.6
+dpkg-buildpackage: full upload (original source is included)
+Now running lintian...
+W: libpam-phidgetrfid source: out-of-date-standards-version 3.8.4 (current is 3.9.1)
+Finished running lintian.
+Now signing changes and any dsc files...
+ signfile libpam-phidgetrfid_1.0.6-0ubuntu1.dsc Caleb Callaway <enlightened.despot@gmail.com>
+
+ signfile libpam-phidgetrfid_1.0.6-0ubuntu1_source.changes Caleb Callaway <enlightened.despot@gmail.com>
+
+Successfully signed dsc and changes files
